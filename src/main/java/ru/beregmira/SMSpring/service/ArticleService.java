@@ -6,10 +6,6 @@ import ru.beregmira.SMSpring.dao.ArticleRepository;
 import ru.beregmira.SMSpring.model.Article;
 
 import java.util.List;
-import java.util.Spliterator;
-import java.util.Spliterators;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Service
 public class ArticleService {
@@ -21,11 +17,7 @@ public class ArticleService {
     }
 
     public List<Article> getAll() {
-        return StreamSupport
-                .stream(
-                        Spliterators.spliteratorUnknownSize(repository.findAll().iterator(), Spliterator.NONNULL),
-                        false)
-                .collect(Collectors.toList());
+        return repository.findAll();
     }
 
     public Article getSingleArticle(long id){

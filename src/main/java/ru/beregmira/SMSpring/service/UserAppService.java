@@ -6,10 +6,6 @@ import ru.beregmira.SMSpring.dao.UserAppRepository;
 import ru.beregmira.SMSpring.model.UserApp;
 
 import java.util.List;
-import java.util.Spliterator;
-import java.util.Spliterators;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Service
 public class UserAppService {
@@ -21,11 +17,6 @@ public class UserAppService {
     }
 
     public List<UserApp> getAll() {
-        return StreamSupport
-                .stream(
-                        Spliterators.spliteratorUnknownSize(repository.findAll().iterator(), Spliterator.NONNULL),
-                        false)
-                .collect(Collectors.toList());
-
+        return repository.findAll();
     }
 }
