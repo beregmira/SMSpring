@@ -10,7 +10,7 @@ import ru.beregmira.SMSpring.model.Article;
 import ru.beregmira.SMSpring.service.ArticleService;
 
 @Controller
-@RequestMapping(value={"/", "/welcome"})
+@RequestMapping()
 public class EditorController {
     @Autowired
     private ArticleService service;

@@ -8,7 +8,7 @@ import ru.beregmira.SMSpring.service.ArticleService;
 import ru.beregmira.SMSpring.service.UserAppService;
 
 @Controller
-@RequestMapping(value={"/", "/welcome"})
+@RequestMapping()
 public class MainController {
     @Autowired
     private UserAppService userAppService;

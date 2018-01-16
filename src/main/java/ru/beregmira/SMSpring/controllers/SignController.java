@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.beregmira.SMSpring.model.UserApp;
 
 @Controller
-@RequestMapping(value={"/", "/welcome"})
+@RequestMapping()
 public class SignController {
     @RequestMapping(value = "/sign")
     public String signPage(Model model) {
