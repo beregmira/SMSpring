@@ -9,7 +9,6 @@ import ru.beregmira.SMSpring.model.UserApp;
 import ru.beregmira.SMSpring.service.UserAppService;
 
 @Controller
-@RequestMapping()
 public class LoginController {
     @Autowired
     private UserAppService userAppService;

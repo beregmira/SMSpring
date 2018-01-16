@@ -10,7 +10,6 @@ import ru.beregmira.SMSpring.service.ArticleService;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
-@RequestMapping()
 public class BlogController {
 
     @Autowired
