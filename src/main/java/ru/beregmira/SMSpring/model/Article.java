@@ -1,18 +1,29 @@
 package ru.beregmira.SMSpring.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Article {
-
+@Table(name = "article")
+public class Article implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
+
     @Column
     private String title;
+
     @Column(length = 1000000)
     @Lob
     private String content;
+
+    public Article() {
+    }
+
+    public Article(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 
     public String getTitle() {
         return title;

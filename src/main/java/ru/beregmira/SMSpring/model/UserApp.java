@@ -1,10 +1,11 @@
 package ru.beregmira.SMSpring.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "user_app")
-public class UserApp {
+public class UserApp implements Serializable {
 
         @Id
         @GeneratedValue
