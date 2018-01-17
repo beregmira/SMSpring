@@ -19,4 +19,8 @@ public class UserAppService {
     public List<UserApp> getAll() {
         return repository.findAll();
     }
+
+    public UserApp getSingleUser(long id) {
+        return repository.findOne(id);
+    }
 }

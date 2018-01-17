@@ -25,6 +25,10 @@ public class Article implements Serializable {
         return userApp.getName();
     }
 
+    public String getUserId() {
+        return userApp.getId().toString();
+    }
+
     public Article(String title, String content, UserApp userApp) {
         this.title = title;
         this.content = content;

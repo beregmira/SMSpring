@@ -62,22 +62,16 @@
                     <div class="panel-body">
                         <h1>Добро пожаловать в "МегаБлогоКомпани"</h1>
                         <p>
-                            Этот сайт является демо версией возможностей <b>framework'а Spring</b>, о котором я только слышал и вот наконец-то добрался :)<br/>
+                            Этот сайт является демо версией возможностей <b>framework'а Spring</b>, о котором я только
+                            слышал и вот наконец-то добрался :)<br/>
                         </p>
                     </div>
-                        <hr/>
-
-                    <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
-                    <form th:action="@{/logout}" method="post">
-                        <input type="submit" value="Выйти"/>
-                    </form>
+                    <hr/>
                 </div>
             </div>
-
-            <div th:each="article : ${articles}">
-                <a th:href="@{/blog/(id=${article.id})}"><h3 th:text="${article.title}"/></a>
-                <p th:text="${article.content}"/>
-                <a th:href="@{/user/(id=${article.getUserId()})}"><p th:text="${article.getUserName()}"/></a>
+            <div th:object="${SingleUser}">
+                <h3 th:text="*{name}"/>
+                <p th:text="*{email}"/>
                 <hr/>
             </div>
         </div>
