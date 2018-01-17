@@ -17,7 +17,22 @@ public class Article implements Serializable {
     @Lob
     private String content;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserApp userApp;
+
+    public String getUserName() {
+        return userApp.getName();
+    }
+
+    public Article(String title, String content, UserApp userApp) {
+        this.title = title;
+        this.content = content;
+        this.userApp = userApp;
+    }
+
     public Article() {
+
     }
 
     public Article(String title, String content) {
