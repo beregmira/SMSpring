@@ -13,14 +13,12 @@ import javax.sql.DataSource;
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Qualifier("dataSource")
+    private final DataSource dataSource;
+
     @Autowired
-    DataSource dataSource;
-//    @Autowired
-//    private final DataSource dataSource;
-//    SecurityConfiguration(DataSource dataSource){
-//        this.dataSource = dataSource;
-//    }
+    SecurityConfiguration(@Qualifier("dataSource") DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
@@ -37,7 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         config
                 .authorizeRequests()
                 .antMatchers("/main").hasAnyRole("USER", "EDITOR")
-                .antMatchers("/editor").hasRole("EDITOR")
+                .antMatchers("/editor").hasAnyRole("USER", "EDITOR")
                 .antMatchers("/blog/*").hasAnyRole("USER", "EDITOR")
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/main").permitAll()
                 .and().logout().logoutUrl("/logout");
