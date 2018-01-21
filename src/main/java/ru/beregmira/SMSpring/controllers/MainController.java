@@ -18,6 +18,7 @@ public class MainController {
     @Autowired
     private ArticleService articleService;
 
+    //    TODO fix hardcode role in main.html
     @RequestMapping(value = "/main")
     public String mainBlogPage(Model model, @AuthenticationPrincipal UserDetails currentUser) {
         UserApp userApp = userAppService.getUserAppByName(currentUser.getUsername());

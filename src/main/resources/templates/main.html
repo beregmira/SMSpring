@@ -82,7 +82,8 @@
                 <p class="" th:text="${article.content}"/>
                 <a class="article-menu" th:href="@{/user/(id=${article.getUserId()})}"><p
                         th:text="${article.getUserName()}"/></a>
-                <ul th:if="${userApp.getId()}==${article.getUserId()}" class="list-inline text-right">
+                <ul th:if="${userApp.getId()}==${article.getUserId()} or ${userApp.getRole()}=='ROLE_EDITOR'"
+                    class="list-inline text-right">
                     <li></li>
                     <li><a class="article-menu btn btn-link" th:href="@{/editor/(id=${article.getId()})}"><p
                             th:text="edit"/></a></li>
