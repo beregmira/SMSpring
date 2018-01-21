@@ -23,4 +23,8 @@ public class UserAppService {
     public UserApp getSingleUser(long id) {
         return repository.findOne(id);
     }
+
+    public UserApp getUserAppByName(String userName) {
+        return repository.findUserAppByName(userName);
+    }
 }

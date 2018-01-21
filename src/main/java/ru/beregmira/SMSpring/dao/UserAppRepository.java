@@ -8,4 +8,5 @@ import ru.beregmira.SMSpring.model.UserApp;
 @Repository
 public interface UserAppRepository extends JpaRepository<UserApp, Long> {
 
+    UserApp findUserAppByName(String userName);
 }

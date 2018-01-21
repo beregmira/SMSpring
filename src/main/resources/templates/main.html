@@ -12,10 +12,14 @@
             border-radius: 0;
         }
 
-        .row.content {
-            height: 450px
+        .row .content {
+            padding: 5px;
+            margin: 5px;
         }
 
+        .article-menu {
+
+        }
         footer {
             background-color: #555;
             color: white;
@@ -67,17 +71,24 @@
                     </div>
                         <hr/>
 
-                    <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+                    <span th:text="${#authentication.getName()}"></span>
                     <form th:action="@{/logout}" method="post">
                         <input type="submit" value="Выйти"/>
                     </form>
                 </div>
             </div>
-
-            <div th:each="article : ${articles}">
+            <div class="row content" th:each="article : ${articles}">
                 <a th:href="@{/blog/(id=${article.id})}"><h3 th:text="${article.title}"/></a>
-                <p th:text="${article.content}"/>
-                <a th:href="@{/user/(id=${article.getUserId()})}"><p th:text="${article.getUserName()}"/></a>
+                <p class="" th:text="${article.content}"/>
+                <a class="article-menu" th:href="@{/user/(id=${article.getUserId()})}"><p
+                        th:text="${article.getUserName()}"/></a>
+                <ul th:if="${userApp.getId()}==${article.getUserId()}" class="list-inline text-right">
+                    <li></li>
+                    <li><a class="article-menu btn btn-link" th:href="@{/editor/(id=${article.getId()})}"><p
+                            th:text="edit"/></a></li>
+                    <li><a class="article-menu btn btn-link" th:href="@{/editor/(id=${article.getId()},del=true)}"><p
+                            th:text="delete"/></a></li>
+                </ul>
                 <hr/>
             </div>
         </div>
