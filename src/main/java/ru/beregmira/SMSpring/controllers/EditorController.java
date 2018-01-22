@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.beregmira.SMSpring.model.Article;
-import ru.beregmira.SMSpring.model.UserApp;
 import ru.beregmira.SMSpring.service.ArticleService;
 import ru.beregmira.SMSpring.service.UserAppService;
 
@@ -23,9 +22,8 @@ public class EditorController {
 
     @RequestMapping(value = "/editor")
     public String editorPage(Model model, @AuthenticationPrincipal UserDetails currentUser) {
-        UserApp userApp = userAppService.getUserAppByName(currentUser.getUsername());
-        model.addAttribute("article", new Article(userApp));
-        model.addAttribute("userApp", userApp);
+        model.addAttribute("article", new Article());
+        model.addAttribute("CurrentUserAppId", userAppService.getUserAppIdByCurrentUserName(currentUser));
         return "editor";
     }
 

@@ -22,8 +22,8 @@ public class MainController {
     @RequestMapping(value = "/main")
     public String mainBlogPage(Model model, @AuthenticationPrincipal UserDetails currentUser) {
         UserApp userApp = userAppService.getUserAppByName(currentUser.getUsername());
-        model.addAttribute("articles", articleService.getAll());
-        model.addAttribute("users", userAppService.getAll());
+        model.addAttribute("articles", articleService);
+        model.addAttribute("users", userAppService);
         model.addAttribute("userApp", userApp);
         return "main";
     }

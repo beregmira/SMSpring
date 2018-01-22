@@ -17,19 +17,10 @@ public class Article implements Serializable {
     @Lob
     private String content;
 
-    @Column(name = "userapp")
-    private UserApp userApp;
-
-    @ManyToOne
-    public UserApp getUserApp() {
-        return userApp;
-    }
+    @Column
+    private Long userid;
 
     public Article() {
-    }
-
-    public Article(UserApp userApp) {
-        this.userApp = userApp;
     }
 
     public Long getId() {
@@ -56,7 +47,11 @@ public class Article implements Serializable {
         this.content = content;
     }
 
-    public void setUserApp(UserApp userApp) {
-        this.userApp = userApp;
+    public Long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
     }
 }

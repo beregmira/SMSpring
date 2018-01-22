@@ -77,11 +77,12 @@
                     </form>
                 </div>
             </div>
-            <div class="row content" th:each="article : ${articles}">
+            <div class="row content" th:each="article : ${articles.getAll()}">
                 <a th:href="@{/blog/(id=${article.id})}"><h3 th:text="${article.title}"/></a>
                 <p class="" th:text="${article.content}"/>
-                <a class="article-menu" th:href="@{/user/(id=${article.getUserApp().id})}"><p
-                        th:text="${article.getUserApp().getName()}"/></a>
+                <a class="article-menu" th:href="@{/user/(id=${article.getUserid()})}">
+                    <p th:text="${articles.getUserAppNameById(article.getUserid())}"/>
+                </a>
 
                 <!--<ul th:if="${userApp.getId()}==${article.getUserId()} or ${article.getUserApp().getRole()}=='ROLE_EDITOR'"-->
                 <!--class="list-inline text-right">-->

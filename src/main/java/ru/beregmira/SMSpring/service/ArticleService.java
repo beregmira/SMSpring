@@ -12,6 +12,9 @@ public class ArticleService {
     @Autowired
     private ArticleRepository repository;
 
+    @Autowired
+    UserAppService userAppService;
+
     public void save(Article article) {
         repository.save(article);
     }
@@ -22,5 +25,9 @@ public class ArticleService {
 
     public Article getSingleArticle(long id){
         return repository.findOne(id);
+    }
+
+    public String getUserAppNameById(Long id) {
+        return userAppService.getUserNameById(id);
     }
 }

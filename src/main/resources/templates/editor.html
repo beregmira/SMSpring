@@ -68,8 +68,8 @@
                     <label for="comment">Текст</label>
                     <textarea class="form-control" rows="20" id="comment" th:field="*{content}"></textarea>
                 </div>
-                <input type="hidden" class="form-control" id="userApp" th:field="*{userApp}"
-                       th:value="*{getUserApp()}"/>
+                <input type="hidden" class="form-control" id="userApp" name="userid"
+                       th:value="${CurrentUserAppId}"/>
                 <button type="submit" class="btn btn-success">Сохранить</button>
             </form>
             <hr/>
