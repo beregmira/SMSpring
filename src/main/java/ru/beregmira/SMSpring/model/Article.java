@@ -17,31 +17,27 @@ public class Article implements Serializable {
     @Lob
     private String content;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @Column(name = "userapp")
     private UserApp userApp;
 
-    public String getUserName() {
-        return userApp.getName();
-    }
-
-    public String getUserId() {
-        return userApp.getId().toString();
-    }
-
-    public Article(String title, String content, UserApp userApp) {
-        this.title = title;
-        this.content = content;
-        this.userApp = userApp;
+    @ManyToOne
+    public UserApp getUserApp() {
+        return userApp;
     }
 
     public Article() {
-
     }
 
-    public Article(String title, String content) {
-        this.title = title;
-        this.content = content;
+    public Article(UserApp userApp) {
+        this.userApp = userApp;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -60,11 +56,7 @@ public class Article implements Serializable {
         this.content = content;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserApp(UserApp userApp) {
+        this.userApp = userApp;
     }
 }

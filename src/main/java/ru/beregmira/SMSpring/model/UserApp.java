@@ -2,6 +2,7 @@ package ru.beregmira.SMSpring.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "user_app")
@@ -25,6 +26,9 @@ public class UserApp implements Serializable {
 
         @Column
         private short enabled = 1;
+
+    @OneToMany(mappedBy = "userApp", cascade = CascadeType.ALL)
+    private List<Article> articleList;
 
     public Long getId() {
         return id;
