@@ -30,6 +30,6 @@ public class EditorController {
     @RequestMapping(value = "/editor/submit", method = RequestMethod.POST)
     public String submitArticle(@ModelAttribute Article article) {
         service.save(article);
-        return "redirect:../";
+        return "redirect:../main";
     }
 }
