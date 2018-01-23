@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class ArticleService {
+
     @Autowired
     private ArticleRepository repository;
 
@@ -29,5 +30,9 @@ public class ArticleService {
 
     public String getUserAppNameById(Long id) {
         return userAppService.getUserNameById(id);
+    }
+
+    public void deleteArticleById(Long id) {
+        repository.delete(id);
     }
 }

@@ -84,14 +84,14 @@
                     <p th:text="${articles.getUserAppNameById(article.getUserid())}"/>
                 </a>
 
-                <!--<ul th:if="${userApp.getId()}==${article.getUserId()} or ${article.getUserApp().getRole()}=='ROLE_EDITOR'"-->
-                <!--class="list-inline text-right">-->
-                <!--<li></li>-->
-                <!--<li><a class="article-menu btn btn-link" th:href="@{/editor/(id=${article.getId()})}"><p-->
-                <!--th:text="edit"/></a></li>1111-->
-                <!--<li><a class="article-menu btn btn-link" th:href="@{/editor/delete(id=${article.getId()})}"><p-->
-                <!--th:text="delete"/></a></li>-->
-                <!--</ul>-->
+                <ul th:if="${userApp.getId()} == ${article.getUserid()} or ${userApp.getRole()}=='ROLE_EDITOR'"
+                    class="list-inline text-right">
+                    <li></li>
+                    <li><a class="article-menu btn btn-link" th:href="@{/edit(id=${article.getId()})}"><p
+                            th:text="edit"/></a></li>
+                    <li><a class="article-menu btn btn-link" th:href="@{/editor/delete(id=${article.getId()})}"><p
+                            th:text="delete"/></a></li>
+                </ul>
                 <hr/>
             </div>
         </div>
