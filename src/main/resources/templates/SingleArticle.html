@@ -68,11 +68,28 @@
                         <hr/>
                 </div>
             </div>
+
             <div th:object="${SingleArticle}">
                 <h3 th:text="${SingleArticle.title}"/>
                 <p th:text="${SingleArticle.content}"/>
                 <hr/>
+                <div th:each="comment: ${ListOfAllComments}">
+                    <p th:text="${comment.content}"/>
+                    <hr/>
+                </div>
             </div>
+            <form action="#" th:action="@{/blog/comment}" th:object="${NewComment}" method="post">
+                <h1>Оставить комментарий</h1>
+                <div class="form-group">
+                    <label for="content">Текст комментария</label>
+                    <textarea class="form-control" rows="2" id="content" th:field="*{content}">
+                        </textarea>
+                </div>
+                <input type="hidden" class="form-control" id="articleid" name="articleid"
+                       th:value="${SingleArticle.getId()}"/>
+                <input type="hidden" class="form-control" id="userId" name="userid" th:value="${CurrentUserAppId}"/>
+                <button type="submit" class="btn btn-success">Оставить комментарий</button>
+            </form>
         </div>
     </div>
 </div>

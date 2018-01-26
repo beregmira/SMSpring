@@ -20,4 +20,38 @@ public class Comment implements Serializable {
     @Column
     private Long articleid;
 
+    public Comment() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
+    }
+
+    public Long getArticleid() {
+        return articleid;
+    }
+
+    public void setArticleid(Long articleid) {
+        this.articleid = articleid;
+    }
 }

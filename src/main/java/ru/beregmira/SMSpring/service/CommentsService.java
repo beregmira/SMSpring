@@ -12,6 +12,7 @@ public class CommentsService {
 
     @Autowired
     UserAppService userAppService;
+
     @Autowired
     private CommentsRepository repository;
 
@@ -21,6 +22,10 @@ public class CommentsService {
 
     public List<Comment> getAll() {
         return repository.findAll();
+    }
+
+    public List<Comment> getAllCommentsByArticleId(Long articleid) {
+        return repository.findCommentByArticleid(articleid);
     }
 
     public Comment getSingleComment(long id) {
