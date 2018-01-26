@@ -76,6 +76,15 @@
                 <hr/>
                 <div th:each="comment: ${ListOfAllComments}">
                     <p th:text="${comment.content}"/>
+                    <a class="article-menu" th:href="@{/user/(id=${comment.getUserid()})}">
+                        <p th:text="${geInfoCommetns.getUserNameById(comment.getUserid())}"/>
+                    </a>
+                    <ul th:if="${currentUser.getId()}==${SingleArticle.getUserid()}"
+                        class="list-inline text-right">
+                        <li><a class="article-menu btn btn-link"
+                               th:href="@{/blog/comment/delete(id=${comment.getId()})}"><p
+                                th:text="delete"/></a></li>
+                    </ul>
                     <hr/>
                 </div>
             </div>
