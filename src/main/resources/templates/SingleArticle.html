@@ -71,6 +71,7 @@
 
             <div th:object="${SingleArticle}">
                 <h3 th:text="${SingleArticle.title}"/>
+                <h2 th:text="${SingleArticle.tags}"/>
                 <p th:text="${SingleArticle.content}"/>
                 <hr/>
                 <div th:each="comment: ${ListOfAllComments}">

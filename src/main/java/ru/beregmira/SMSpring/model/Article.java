@@ -18,6 +18,9 @@ public class Article implements Serializable {
     private String content;
 
     @Column
+    private String tags;
+
+    @Column
     private Long userid;
 
     public Article() {
@@ -53,5 +56,13 @@ public class Article implements Serializable {
 
     public void setUserid(Long userid) {
         this.userid = userid;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 }
