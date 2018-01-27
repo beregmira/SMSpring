@@ -2,42 +2,44 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <div th:replace="fragments/header :: header-css"/>
-    <title>МегаБлогоКомпани</title>
+    <div th:replace="fragments/header :: header-title"/>
 </head>
 <body>
 <div th:replace="fragments/header :: header-menu"/>
 <div th:replace="fragments/header :: header"/>
-
-<div th:object="${SingleArticle}">
-    <h3 th:text="${SingleArticle.title}"/>
-    <h2 th:text="${SingleArticle.tags}"/>
-    <p th:text="${SingleArticle.content}"/>
-    <hr/>
-    <div th:each="comment: ${ListOfAllComments}">
-        <p th:text="${comment.content}"/>
-        <a class="article-menu" th:href="@{/user/(id=${comment.getUserid()})}">
-            <p th:text="${geInfoCommetns.getUserNameById(comment.getUserid())}"/>
-        </a>
-        <ul th:if="${currentUser.getId()}==${SingleArticle.getUserid()}"
-            class="list-inline text-right">
-            <li><a class="article-menu btn btn-link"
-                   th:href="@{/blog/comment/delete(id=${comment.getId()})}"><p
-                    th:text="delete"/></a></li>
-        </ul>
+<div class="container">
+    <div th:object="${SingleArticle}">
+        <h3 th:text="${SingleArticle.title}"/>
+        <h2 th:text="${SingleArticle.tags}"/>
+        <p th:text="${SingleArticle.content}"/>
         <hr/>
+        <div th:each="comment: ${ListOfAllComments}">
+            <p th:text="${comment.content}"/>
+            <a class="article-menu" th:href="@{/user/(id=${comment.getUserid()})}">
+                <p th:text="${geInfoCommetns.getUserNameById(comment.getUserid())}"/>
+            </a>
+            <ul th:if="${currentUser.getId()}==${SingleArticle.getUserid()}"
+                class="list-inline text-right">
+                <li><a class="article-menu btn btn-link"
+                       th:href="@{/blog/comment/delete(id=${comment.getId()})}"><p
+                        th:text="delete"/></a></li>
+            </ul>
+            <hr/>
+        </div>
     </div>
+    <form action="#" th:action="@{/blog/comment}" th:object="${NewComment}" method="post">
+        <h1>Оставить комментарий</h1>
+        <div class="form-group">
+            <label for="content">Текст комментария</label>
+            <textarea class="form-control" rows="2" id="content" th:field="*{content}">
+                            </textarea>
+        </div>
+        <input type="hidden" class="form-control" id="articleid" name="articleid"
+               th:value="${SingleArticle.getId()}"/>
+        <input type="hidden" class="form-control" id="userId" name="userid" th:value="${CurrentUserAppId}"/>
+        <button type="submit" class="btn btn-success">Оставить комментарий</button>
+    </form>
 </div>
-<form action="#" th:action="@{/blog/comment}" th:object="${NewComment}" method="post">
-    <h1>Оставить комментарий</h1>
-    <div class="form-group">
-        <label for="content">Текст комментария</label>
-        <textarea class="form-control" rows="2" id="content" th:field="*{content}">
-                        </textarea>
-    </div>
-    <input type="hidden" class="form-control" id="articleid" name="articleid"
-           th:value="${SingleArticle.getId()}"/>
-    <input type="hidden" class="form-control" id="userId" name="userid" th:value="${CurrentUserAppId}"/>
-    <button type="submit" class="btn btn-success">Оставить комментарий</button>
-</form>
+<div th:replace="fragments/footer :: footer"/>
 </body>
 </html>

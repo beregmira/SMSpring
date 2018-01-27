@@ -2,17 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <div th:replace="fragments/header :: header-css"/>
-    <title>МегаБлогоКомпани</title>
+    <div th:replace="fragments/header :: header-title"/>
 </head>
 <body>
+<div th:replace="fragments/header :: header-menu"/>
 <div th:replace="fragments/header :: header"/>
-<a th:href="@{/login}">
-    <button type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-log-in"></span>Войти
-    </button>
-</a>
-<a th:href="@{/sign}">
-    <button type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-user"></span>Регистрация
-    </button>
-</a>
+<div th:replace="fragments/footer :: footer"/>
 </body>
 </html>

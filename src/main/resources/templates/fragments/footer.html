@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+
+<head>
+    <title>fragments</title>
+</head>
+<body>
+<div class="raw text-center" th:fragment="footer">
+    <div class="footer" id="footer">
+        <p>© "МегаБлогоКомпани" 2018</p>
+    </div>
+</div>
+<div th:fragment="footer-jsApp">
+    <script th:src="@{js/jsApp.js}"></script>
+</div>
+
+</body>
+</html>

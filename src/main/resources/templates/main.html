@@ -2,33 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <div th:replace="fragments/header :: header-css"/>
-    <title>МегаБлогоКомпани</title>
+    <div th:replace="fragments/header :: header-title"/>
 </head>
 <body>
 <div th:replace="fragments/header :: header-menu"/>
 <div th:replace="fragments/header :: header"/>
-<span th:text="${#authentication.getName()}"></span>
+<div class="container">
+    <div class="row marketing" th:each="article : ${articles.getAll()}">
+        <a th:href="@{/blog/(id=${article.id})}"><h3 th:text="${article.title}"/></a>
+        <p th:text="${article.content}"/>
+        <a class="article-menu" th:href="@{/user/(id=${article.getUserid()})}">
+            <p th:text="${articles.getUserAppNameById(article.getUserid())}"/>
+        </a>
 
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Выйти"/>
-</form>
-
-<div class="row content" th:each="article : ${articles.getAll()}">
-    <a th:href="@{/blog/(id=${article.id})}"><h3 th:text="${article.title}"/></a>
-    <p class="" th:text="${article.content}"/>
-    <a class="article-menu" th:href="@{/user/(id=${article.getUserid()})}">
-        <p th:text="${articles.getUserAppNameById(article.getUserid())}"/>
-    </a>
-
-    <ul th:if="${userApp.getId()} == ${article.getUserid()} or ${userApp.getRole()}=='ROLE_EDITOR'"
-        class="list-inline text-right">
-        <li></li>
-        <li><a class="article-menu btn btn-link" th:href="@{/edit(id=${article.getId()})}"><p
-                th:text="edit"/></a></li>
-        <li><a class="article-menu btn btn-link" th:href="@{/editor/delete(id=${article.getId()})}"><p
-                th:text="delete"/></a></li>
-    </ul>
-    <hr/>
+        <ul th:if="${userApp.getId()} == ${article.getUserid()} or ${userApp.getRole()}=='ROLE_EDITOR'"
+            class="list-inline text-right">
+            <li>
+                <a class="article-menu btn btn-link" th:href="@{/edit(id=${article.getId()})}">
+                    <p th:text="edit"/>
+                </a>
+            </li>
+            <li>
+                <a class="article-menu btn btn-link" th:href="@{/editor/delete(id=${article.getId()})}">
+                    <p th:text="delete"/>
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
+<div th:replace="fragments/footer :: footer"/>
 </body>
 </html>

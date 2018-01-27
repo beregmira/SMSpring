@@ -2,16 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <div th:replace="fragments/header :: header-css"/>
-    <title>МегаБлогоКомпани</title>
+    <div th:replace="fragments/header :: header-title"/>
 </head>
 <body>
 <div th:replace="fragments/header :: header-menu"/>
 <div th:replace="fragments/header :: header"/>
-
-<div th:object="${SingleUser}">
-    <h3 th:text="*{name}"/>
-    <p th:text="*{email}"/>
-    <hr/>
+<div class="container">
+    <div th:object="${SingleUser}">
+        <h3 th:text="*{name}"/>
+        <p th:text="*{email}"/>
+        <hr/>
+    </div>
 </div>
+<div th:replace="fragments/footer :: footer"/>
 </body>
 </html>

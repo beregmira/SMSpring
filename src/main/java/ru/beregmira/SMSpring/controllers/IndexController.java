@@ -13,7 +13,7 @@ public class IndexController {
 
     @RequestMapping(value = "/logout")
     public String logoutPage() {
-        return "index";
+        return "redirect:/";
     }
 
 

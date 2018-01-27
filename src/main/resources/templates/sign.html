@@ -2,53 +2,55 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <div th:replace="fragments/header :: header-css"/>
-    <title>МегаБлогоКомпани</title>
+    <div th:replace="fragments/header :: header-title"/>
 </head>
 <body>
 <div th:replace="fragments/header :: header-menu"/>
 <div th:replace="fragments/header :: header"/>
-
-<form th:action="@{/login/registration}" th:object="${user}" method="post">
-    <fieldset>
-        <h2>Введите данные для регистрации</h2>
-        <div th:if="${param.error}">
-            <div class="alert alert-danger">
-                Вы ввели неправильные данные
+<div class="container">
+    <!--th:action="@{/login/registration}"-->
+    <form id="FormRegistration" th:action="@{/login/registration}" th:object="${user}" method="post">
+        <fieldset>
+            <h2>Введите данные для регистрации</h2>
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">
+                    Вы ввели неправильные данные
+                </div>
             </div>
-        </div>
-
-        <div th:if="${#fields.hasGlobalErrors()}">
-            <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-        </div>
-
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input id="username" type="text" class="form-control" name="username" th:field="*{name}"
-                   placeholder="логин" required="required"/>
-        </div>
-
-        <br/>
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input id="password" type="password" class="form-control" name="password" th:field="*{password}"
-                   placeholder="пароль" required="required"/>
-        </div>
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input id="passwordconfirm" type="password" class="form-control" name="passwordconfirm"
-                   placeholder="подтверждение пароля" required="required"/>
-        </div>
-        <br/>
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-            <input id="email" type="email" class="form-control" name="email" th:field="*{email}"
-                   placeholder="e-mail"/>
-        </div>
-        <br/>
-        <div>
-            <button type="submit" class="btn btn-success">Войти</button>
-        </div>
-    </fieldset>
-</form>
+            <div th:if="${#fields.hasGlobalErrors()}">
+                <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input id="username" type="text" class="form-control" name="username" th:field="*{name}"
+                       placeholder="Логин" required="required"/>
+            </div>
+            <br/>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="password" type="password" class="form-control" name="password" th:field="*{password}"
+                       placeholder="Пароль" required="required"/>
+            </div>
+            <br/>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="passwordconfirm" type="password" class="form-control" name="passwordconfirm"
+                       placeholder="Подтверждение пароля" required="required"/>
+            </div>
+            <br/>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                <input id="email" type="email" class="form-control" name="email" th:field="*{email}"
+                       placeholder="E-mail"/>
+            </div>
+            <br/>
+            <div class="text-center">
+                <button id="registration" type="button" class="btn btn-success">Зарегестрироваться</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div th:replace="fragments/footer :: footer"/>
+<div th:replace="fragments/footer :: footer-jsApp"/>
 </body>
 </html>
