@@ -12,22 +12,22 @@
         <h2 class="blog-title" th:text="${SingleArticle.title}"/>
         <p class="blog" th:text="${SingleArticle.content}"/>
         <p class="text-right"><span>Тэги: </span><span class="tag" th:text="${SingleArticle.tags}"/></p>
-        <hr/>
     </div>
     <div class="row marketing" th:each="comment,iterationInfo: ${ListOfAllComments}">
         <p th:text="'Комментарий #' + ${iterationInfo.index+1}"/>
-        <p th:text="${comment.content}"/>
-        <a title="Профиль пользователя" class="btn btn-default btn-xs"
-           th:href="@{/user/(id=${comment.getUserid()})}">
-            <span class="glyphicon glyphicon-user"></span>
-            <span th:text="${geInfoCommetns.getUserNameById(comment.getUserid())}"/>
-        </a>
-        <div class="text-right" th:if="${currentUser.getId()}==${SingleArticle.getUserid()}">
+        <p class="blog" th:text="${comment.content}"/>
+        <div class="blog-menu text-right">
+            <a title="Профиль пользователя" class="btn btn-default btn-xs"
+               th:href="@{/user/(id=${comment.getUserid()})}">
+                <span class="glyphicon glyphicon-user"></span>
+                <span th:text="${geInfoCommetns.getUserNameById(comment.getUserid())}"/>
+            </a>
+        </div>
+        <div class="blog-menu text-right" th:if="${currentUser.getId()}==${SingleArticle.getUserid()}">
             <a title="Удалить" class="btn btn-default btn-xs" th:href="@{/blog/comment/delete(id=${comment.getId()})}">
                 <span class="glyphicon glyphicon-remove"></span>
             </a>
         </div>
-        <hr/>
     </div>
     <form action="#" th:action="@{/blog/comment}" th:object="${NewComment}" method="post">
         <h1>Оставить комментарий</h1>

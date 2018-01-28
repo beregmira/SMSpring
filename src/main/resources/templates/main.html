@@ -11,14 +11,15 @@
     <div class="row marketing" th:each="article : ${articles.getAll()}">
         <a th:href="@{/blog/(id=${article.id})}"><h2 class="blog-title" th:text="${article.title}"/></a>
         <p class="blog" th:text="${article.content}"/>
-        <a title="Профиль пользователя" class="btn btn-default btn-xs"
-           th:href="@{/user/(id=${article.getUserid()})}">
-            <span class="glyphicon glyphicon-user"></span>
-            <span th:text="${articles.getUserAppNameById(article.getUserid())}"/>
-        </a>
-
+        <div class="blog-menu text-right">
+            <a title="Профиль пользователя" class="btn btn-default btn-xs"
+               th:href="@{/user/(id=${article.getUserid()})}">
+                <span class="glyphicon glyphicon-user"></span>
+                <span th:text="${articles.getUserAppNameById(article.getUserid())}"/>
+            </a>
+        </div>
         <div th:if="${userApp.getId()} == ${article.getUserid()} or ${userApp.getRole()}=='ROLE_EDITOR'"
-             class="text-right">
+             class="blog-menu text-right">
             <a title="Редактировать" class="btn btn-default btn-xs" th:href="@{/edit(id=${article.getId()})}">
                 <span class="glyphicon glyphicon-pencil"></span>
             </a>
