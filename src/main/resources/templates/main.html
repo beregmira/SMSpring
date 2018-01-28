@@ -9,25 +9,23 @@
 <div th:replace="fragments/header :: header"/>
 <div class="container">
     <div class="row marketing" th:each="article : ${articles.getAll()}">
-        <a th:href="@{/blog/(id=${article.id})}"><h3 th:text="${article.title}"/></a>
-        <p th:text="${article.content}"/>
-        <a class="article-menu" th:href="@{/user/(id=${article.getUserid()})}">
-            <p th:text="${articles.getUserAppNameById(article.getUserid())}"/>
+        <a th:href="@{/blog/(id=${article.id})}"><h2 class="blog-title" th:text="${article.title}"/></a>
+        <p class="blog" th:text="${article.content}"/>
+        <a title="Профиль пользователя" class="btn btn-default btn-xs"
+           th:href="@{/user/(id=${article.getUserid()})}">
+            <span class="glyphicon glyphicon-user"></span>
+            <span th:text="${articles.getUserAppNameById(article.getUserid())}"/>
         </a>
 
-        <ul th:if="${userApp.getId()} == ${article.getUserid()} or ${userApp.getRole()}=='ROLE_EDITOR'"
-            class="list-inline text-right">
-            <li>
-                <a class="article-menu btn btn-link" th:href="@{/edit(id=${article.getId()})}">
-                    <p th:text="edit"/>
-                </a>
-            </li>
-            <li>
-                <a class="article-menu btn btn-link" th:href="@{/editor/delete(id=${article.getId()})}">
-                    <p th:text="delete"/>
-                </a>
-            </li>
-        </ul>
+        <div th:if="${userApp.getId()} == ${article.getUserid()} or ${userApp.getRole()}=='ROLE_EDITOR'"
+             class="text-right">
+            <a title="Редактировать" class="btn btn-default btn-xs" th:href="@{/edit(id=${article.getId()})}">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+            <a title="Удалить" class="btn btn-default btn-xs" th:href="@{/editor/delete(id=${article.getId()})}">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </div>
     </div>
 </div>
 <div th:replace="fragments/footer :: footer"/>

@@ -11,7 +11,7 @@
     <!--th:action="@{/login/registration}"-->
     <form id="FormRegistration" th:action="@{/login/registration}" th:object="${user}" method="post">
         <fieldset>
-            <h2>Введите данные для регистрации</h2>
+            <h2>Введите данные для регистрации:</h2>
             <div th:if="${param.error}">
                 <div class="alert alert-danger">
                     Вы ввели неправильные данные
@@ -23,19 +23,19 @@
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                 <input id="username" type="text" class="form-control" name="username" th:field="*{name}"
-                       placeholder="Логин" required="required"/>
+                       placeholder="Логин" minlength="3" required="required"/>
             </div>
             <br/>
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                 <input id="password" type="password" class="form-control" name="password" th:field="*{password}"
-                       placeholder="Пароль" required="required"/>
+                       placeholder="Пароль" minlength="3" required="required"/>
             </div>
             <br/>
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                 <input id="passwordconfirm" type="password" class="form-control" name="passwordconfirm"
-                       placeholder="Подтверждение пароля" required="required"/>
+                       placeholder="Подтверждение пароля" minlength="3" required="required"/>
             </div>
             <br/>
             <div class="input-group">
@@ -45,7 +45,7 @@
             </div>
             <br/>
             <div class="text-center">
-                <button id="registration" type="button" class="btn btn-success">Зарегестрироваться</button>
+                <button id="registration" type="button" class="btn btn-success">Зарегистрироваться</button>
             </div>
         </fieldset>
     </form>

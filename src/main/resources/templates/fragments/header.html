@@ -4,11 +4,16 @@
 <head>
     <div th:fragment="header-css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="../../static/css/style.css" th:href="@{css/style.css}"/>
-        <link rel="stylesheet" href="../../static/css/jumbotron-narrow.css" th:href="@{css/jumbotron-narrow.css}"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+                crossorigin="anonymous">
+        </script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous"/>
+        <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}"/>
+        <link rel="stylesheet" href="../../static/css/jumbotron-narrow.css" th:href="@{/css/jumbotron-narrow.css}"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </div>
     <title th:fragment="header-title">МегаБлогоКомпани</title>
@@ -39,7 +44,7 @@
             </ul>
             <div th:if="${#authentication.getPrincipal()}!=anonymousUser">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active">
+                    <li>
                         <a href="javascript: document.logoutForm.submit()"><span
                                 class="glyphicon glyphicon-log-in"></span>Выйти</a>
                     </li>
@@ -54,13 +59,13 @@
 
 <div class="container text-center" th:fragment="header">
     <div class="jumbotron">
-        <h1>"МегаБлогоКомпани"</h1>
+        <h1>МегаБлогоКомпани</h1>
         <div th:if="${#authentication.getPrincipal()}==anonymousUser">
             <p class="lead">Добро пожаловать!</p>
-            <p>Авторизуйтесь, воспользовавшись меню, или зарегестрируйтесь.</p>
+            <p>Авторизуйтесь, воспользовавшись меню, или зарегистрируйтесь.</p>
         </div>
         <div th:if="${#authentication.getPrincipal()}!=anonymousUser">
-            <p class="lead" th:text="'Добро пожаловать,' + ${#authentication.getName()}"></p>
+            <p class="lead" th:text="'Добро пожаловать, ' + ${#authentication.getName()}"></p>
             <p>Вы можете писать новые статьи и оставлять комментарии.</p>
         </div>
     </div>

@@ -8,24 +8,26 @@
 <div th:replace="fragments/header :: header-menu"/>
 <div th:replace="fragments/header :: header"/>
 <div class="container">
-    <div th:object="${SingleArticle}">
-        <h3 th:text="${SingleArticle.title}"/>
-        <h2 th:text="${SingleArticle.tags}"/>
-        <p th:text="${SingleArticle.content}"/>
+    <div class="row marketing" th:object="${SingleArticle}">
+        <h2 class="blog-title" th:text="${SingleArticle.title}"/>
+        <p class="blog" th:text="${SingleArticle.content}"/>
+        <p class="text-right"><span>Тэги: </span><span class="tag" th:text="${SingleArticle.tags}"/></p>
         <hr/>
-        <div th:each="comment: ${ListOfAllComments}">
-            <p th:text="${comment.content}"/>
-            <a class="article-menu" th:href="@{/user/(id=${comment.getUserid()})}">
-                <p th:text="${geInfoCommetns.getUserNameById(comment.getUserid())}"/>
+    </div>
+    <div class="row marketing" th:each="comment,iterationInfo: ${ListOfAllComments}">
+        <p th:text="'Комментарий #' + ${iterationInfo.index+1}"/>
+        <p th:text="${comment.content}"/>
+        <a title="Профиль пользователя" class="btn btn-default btn-xs"
+           th:href="@{/user/(id=${comment.getUserid()})}">
+            <span class="glyphicon glyphicon-user"></span>
+            <span th:text="${geInfoCommetns.getUserNameById(comment.getUserid())}"/>
+        </a>
+        <div class="text-right" th:if="${currentUser.getId()}==${SingleArticle.getUserid()}">
+            <a title="Удалить" class="btn btn-default btn-xs" th:href="@{/blog/comment/delete(id=${comment.getId()})}">
+                <span class="glyphicon glyphicon-remove"></span>
             </a>
-            <ul th:if="${currentUser.getId()}==${SingleArticle.getUserid()}"
-                class="list-inline text-right">
-                <li><a class="article-menu btn btn-link"
-                       th:href="@{/blog/comment/delete(id=${comment.getId()})}"><p
-                        th:text="delete"/></a></li>
-            </ul>
-            <hr/>
         </div>
+        <hr/>
     </div>
     <form action="#" th:action="@{/blog/comment}" th:object="${NewComment}" method="post">
         <h1>Оставить комментарий</h1>

@@ -6,6 +6,6 @@ $('#registration').click(function () {
         $('#FormRegistration').submit();
     }
     else {
-        $(location).attr('href', '/sign?error')
+        $(location).attr('href', window.location.pathname + '?error')
     }
 });
