@@ -11,6 +11,14 @@
     <div class="row marketing" th:each="article : ${articles.getAll()}">
         <a th:href="@{/blog/(id=${article.id})}"><h2 class="blog-title" th:text="${article.title}"/></a>
         <p class="blog" th:text="${article.content}"/>
+        <div class="text-center comments-div">
+            <span class="comments" th:if="${countCommentsByArticle.countCommentByArticleId(article.id)} > 0"
+                  th:text="'Оставленно комментариев: ' + ${countCommentsByArticle.countCommentByArticleId(article.id)}">
+            </span>
+            <span class="comments" th:if="${countCommentsByArticle.countCommentByArticleId(article.id)} == 0">
+                Нет комментариев
+            </span>
+        </div>
         <div class="blog-menu text-right">
             <a title="Профиль пользователя" class="btn btn-default btn-xs"
                th:href="@{/user/(id=${article.getUserid()})}">

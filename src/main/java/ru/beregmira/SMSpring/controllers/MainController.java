@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.beregmira.SMSpring.model.UserApp;
 import ru.beregmira.SMSpring.service.ArticleService;
+import ru.beregmira.SMSpring.service.CommentsService;
 import ru.beregmira.SMSpring.service.UserAppService;
 
 @Controller
@@ -18,6 +19,9 @@ public class MainController {
     @Autowired
     private ArticleService articleService;
 
+    @Autowired
+    private CommentsService commentsService;
+
     //    TODO fix hardcode role in main.html
     @RequestMapping(value = "/main")
     public String mainBlogPage(Model model, @AuthenticationPrincipal UserDetails currentUser) {
@@ -25,6 +29,7 @@ public class MainController {
         model.addAttribute("articles", articleService);
         model.addAttribute("users", userAppService);
         model.addAttribute("userApp", userApp);
+        model.addAttribute("countCommentsByArticle", commentsService);
         return "main";
     }
 }

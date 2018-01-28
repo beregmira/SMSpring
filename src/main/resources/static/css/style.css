@@ -68,3 +68,14 @@ div.marketing hr {
     width: 20%;
     margin: 4px;
 }
+
+.comments {
+    margin: 5px;
+    padding: 5px;
+    border: #f5f5f5 solid 1px;
+    border-radius: 4px;
+}
+
+.comments-div {
+    margin: 5px;
+}
