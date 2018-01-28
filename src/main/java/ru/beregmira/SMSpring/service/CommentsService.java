@@ -39,4 +39,8 @@ public class CommentsService {
     public void deleteCommentById(Long id) {
         repository.delete(id);
     }
+
+    public int countCommentByUserAppId(Long id) {
+        return repository.countByUserid(id);
+    }
 }

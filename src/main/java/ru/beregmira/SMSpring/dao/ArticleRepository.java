@@ -6,4 +6,5 @@ import ru.beregmira.SMSpring.model.Article;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
+    int countByUserid(Long id);
 }

@@ -9,8 +9,9 @@
 <div th:replace="fragments/header :: header"/>
 <div class="container">
     <div th:object="${SingleUser}">
-        <h3 th:text="*{name}"/>
-        <p th:text="*{email}"/>
+        <p>Имя пользователя: <span th:text="*{name}"/></p>
+        <p>E-mail: <span th:text="*{email}"/></p>
+        <p>Опубликованных статей: <span th:text="${CountArticles}"/></p>
         <hr/>
     </div>
 </div>

@@ -35,4 +35,8 @@ public class ArticleService {
     public void deleteArticleById(Long id) {
         repository.delete(id);
     }
+
+    public int countArticlesByUserId(Long userid) {
+        return repository.countByUserid(userid);
+    }
 }
