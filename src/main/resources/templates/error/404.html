@@ -16,15 +16,15 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a th:href="@{/main}">Бложик</a></li>
+                <li><a th:href="@{/main}" th:text="#{nav.main}">nav.main</a></li>
             </ul>
         </div>
     </div>
     <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-        <input type="submit" value="Выйти"/>
+        <input type="submit" th:value="#{nav.signout}"/>
     </form>
 </nav>
-<div class="text-center"><h1>404 - Страница не найдена, попробуйте снова.</h1></div>
+<div class="text-center"><h1 th:text="#{errorPage.NotFound404}">errorPage.NotFound404</h1></div>
 <div th:replace="fragments/footer :: footer"/>
 </body>
 </html>
