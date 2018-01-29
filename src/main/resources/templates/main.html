@@ -13,14 +13,14 @@
         <p class="blog" th:text="${article.content}"/>
         <div class="text-center comments-div">
             <span class="comments" th:if="${countCommentsByArticle.countCommentByArticleId(article.id)} > 0"
-                  th:text="'Оставленно комментариев: ' + ${countCommentsByArticle.countCommentByArticleId(article.id)}">
+                  th:text="#{mainPage.article.comments} + ${countCommentsByArticle.countCommentByArticleId(article.id)}">
             </span>
-            <span class="comments" th:if="${countCommentsByArticle.countCommentByArticleId(article.id)} == 0">
-                Нет комментариев
+            <span class="comments" th:if="${countCommentsByArticle.countCommentByArticleId(article.id)} == 0"
+                  th:text="#{mainPage.article.noComments}">
             </span>
         </div>
         <div class="blog-menu text-right">
-            <a title="Профиль пользователя" class="btn btn-default btn-xs"
+            <a th:title="#{mainPage.user.title}" class="btn btn-default btn-xs"
                th:href="@{/user/(id=${article.getUserid()})}">
                 <span class="glyphicon glyphicon-user"></span>
                 <span th:text="${articles.getUserAppNameById(article.getUserid())}"/>
@@ -28,10 +28,12 @@
         </div>
         <div th:if="${userApp.getId()} == ${article.getUserid()} or ${userApp.getRole()}=='ROLE_EDITOR'"
              class="blog-menu text-right">
-            <a title="Редактировать" class="btn btn-default btn-xs" th:href="@{/edit(id=${article.getId()})}">
+            <a th:title="#{mainPage.userMenu.edit.title}" class="btn btn-default btn-xs"
+               th:href="@{/edit(id=${article.getId()})}">
                 <span class="glyphicon glyphicon-pencil"></span>
             </a>
-            <a title="Удалить" class="btn btn-default btn-xs" th:href="@{/editor/delete(id=${article.getId()})}">
+            <a th:title="#{mainPage.userMenu.delete.title}" class="btn btn-default btn-xs"
+               th:href="@{/editor/delete(id=${article.getId()})}">
                 <span class="glyphicon glyphicon-remove"></span>
             </a>
         </div>

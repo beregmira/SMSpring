@@ -12,21 +12,24 @@
         <div class="row content">
             <div class="text-left">
                 <form action="#" th:action="@{/editor/edit}" th:object="${EditArticle}" method="post">
-                    <h1>Редактирование статьи</h1>
+                    <h1 th:text="#{editPage.form.h1}">editPage.form.h1</h1>
                     <div class="form-group">
-                        <label for="title">Название</label>
+                        <label for="title" th:text="#{editPage.form.label.title}">editPage.form.label.title</label>
                         <input type="text" class="form-control" id="title" name="title" th:value="*{getTitle()}"/>
-                        <label for="tags">Тэги:</label>
+                        <label for="tags" th:text="#{editPage.form.label.tags}">editPage.form.label.tags</label>
                         <input type="text" class="form-control" id="tags" th:field="*{tags}"/>
                     </div>
                     <div class="form-group">
-                        <label for="content">Текст</label>
+                        <label for="content"
+                               th:text="#{editPage.form.label.content}">editPage.form.label.content</label>
                         <textarea class="form-control" rows="20" id="content" name="content"
                                   th:text="*{getContent()}"></textarea>
                     </div>
                     <input type="hidden" class="form-control" id="userId" name="userid" th:value="*{userid}"/>
                     <input type="hidden" class="form-control" id="articleid" name="id" th:value="*{id}"/>
-                    <button type="submit" class="btn btn-success">Обновить</button>
+                    <button type="submit" class="btn btn-success" th:text="#{editPage.form.button.submit}">
+                        editPage.form.button.submit
+                    </button>
                 </form>
                 <hr/>
             </div>

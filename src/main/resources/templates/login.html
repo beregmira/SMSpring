@@ -10,21 +10,23 @@
 <div class="container">
     <form th:action="@{/login}" method="post">
         <fieldset>
-            <h2>Введите данные:</h2>
+            <h2 th:text="#{loginPage.form.h2}">loginPage.form.h2</h2>
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                 <input id="username" type="text" class="form-control" name="username" autofocus="autofocus"
-                       placeholder="Логин" required="required"/>
+                       th:placeholder="#{loginPage.form.input.username.placeholder}" required="required"/>
             </div>
             <br/>
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                 <input id="password" type="password" class="form-control" name="password"
-                       placeholder="Пароль" required="required"/>
+                       th:placeholder="#{loginPage.form.input.password.placeholder}" required="required"/>
             </div>
             <br/>
             <div class="text-center">
-                <button type="submit" class="btn btn-success">Войти</button>
+                <button type="submit" class="btn btn-success" th:text="#{loginPage.form.button.submit}">
+                    loginPage.form.button.submit
+                </button>
             </div>
         </fieldset>
     </form>

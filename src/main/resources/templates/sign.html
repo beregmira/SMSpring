@@ -8,14 +8,11 @@
 <div th:replace="fragments/header :: header-menu"/>
 <div th:replace="fragments/header :: header"/>
 <div class="container">
-    <!--th:action="@{/login/registration}"-->
     <form id="FormRegistration" th:action="@{/login/registration}" th:object="${user}" method="post">
         <fieldset>
-            <h2>Введите данные для регистрации:</h2>
+            <h2 th:text="#{signPage.form.h2}">signPage.form.h2</h2>
             <div th:if="${param.error}">
-                <div class="alert alert-danger">
-                    Вы ввели неправильные данные
-                </div>
+                <div class="alert alert-danger" th:text="#{signPage.form.error}"></div>
             </div>
             <div th:if="${#fields.hasGlobalErrors()}">
                 <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
@@ -23,29 +20,32 @@
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                 <input id="username" type="text" class="form-control" name="username" th:field="*{name}"
-                       placeholder="Логин" minlength="3" required="required"/>
+                       th:placeholder="#{signPage.form.input.username.placeholder}" minlength="3" required="required"/>
             </div>
             <br/>
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                 <input id="password" type="password" class="form-control" name="password" th:field="*{password}"
-                       placeholder="Пароль" minlength="3" required="required"/>
+                       th:placeholder="#{signPage.form.input.password.placeholder}" minlength="3" required="required"/>
             </div>
             <br/>
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                 <input id="passwordconfirm" type="password" class="form-control" name="passwordconfirm"
-                       placeholder="Подтверждение пароля" minlength="3" required="required"/>
+                       th:placeholder="#{signPage.form.input.passwordconfirm.placeholder}" minlength="3"
+                       required="required"/>
             </div>
             <br/>
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                 <input id="email" type="email" class="form-control" name="email" th:field="*{email}"
-                       placeholder="E-mail"/>
+                       th:placeholder="#{signPage.form.input.email.placeholder}"/>
             </div>
             <br/>
             <div class="text-center">
-                <button id="registration" type="button" class="btn btn-success">Зарегистрироваться</button>
+                <button id="registration" type="button" class="btn btn-success"
+                        th:text="#{signPage.form.button.registration}">signPage.form.button.registration
+                </button>
             </div>
         </fieldset>
     </form>

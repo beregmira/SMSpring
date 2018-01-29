@@ -11,35 +11,39 @@
     <div class="row marketing" th:object="${SingleArticle}">
         <h2 class="blog-title" th:text="${SingleArticle.title}"/>
         <p class="blog" th:text="${SingleArticle.content}"/>
-        <p class="text-right"><span>Тэги: </span><span class="tag" th:text="${SingleArticle.tags}"/></p>
+        <p class="text-right"><span th:text="#{singleArticlePage.span.tags}">SinglePage.span.tags</span><span
+                class="tag" th:text="${SingleArticle.tags}"/></p>
     </div>
     <div class="row marketing" th:each="comment,iterationInfo: ${ListOfAllComments}">
-        <p th:text="'Комментарий #' + ${iterationInfo.index+1}"/>
+        <p th:text="#{singleArticlePage.comment.text} + ${iterationInfo.index+1}"/>
         <p class="blog" th:text="${comment.content}"/>
         <div class="blog-menu text-right">
-            <a title="Профиль пользователя" class="btn btn-default btn-xs"
+            <a th:title="#{mainPage.user.title}" class="btn btn-default btn-xs"
                th:href="@{/user/(id=${comment.getUserid()})}">
                 <span class="glyphicon glyphicon-user"></span>
                 <span th:text="${geInfoCommetns.getUserNameById(comment.getUserid())}"/>
             </a>
         </div>
         <div class="blog-menu text-right" th:if="${currentUser.getId()}==${SingleArticle.getUserid()}">
-            <a title="Удалить" class="btn btn-default btn-xs" th:href="@{/blog/comment/delete(id=${comment.getId()})}">
+            <a th:title="#{mainPage.userMenu.delete.title}" class="btn btn-default btn-xs"
+               th:href="@{/blog/comment/delete(id=${comment.getId()})}">
                 <span class="glyphicon glyphicon-remove"></span>
             </a>
         </div>
     </div>
     <form action="#" th:action="@{/blog/comment}" th:object="${NewComment}" method="post">
-        <h1>Оставить комментарий</h1>
+        <h1 th:text="#{singleArticlePage.form.h1}">singlePage.form.h1</h1>
         <div class="form-group">
-            <label for="content">Текст комментария</label>
+            <label for="content" th:text="#{singleArticlePage.form.label.content}">singlePage.form.label.content</label>
             <textarea class="form-control" rows="2" id="content" th:field="*{content}">
                             </textarea>
         </div>
         <input type="hidden" class="form-control" id="articleid" name="articleid"
                th:value="${SingleArticle.getId()}"/>
         <input type="hidden" class="form-control" id="userId" name="userid" th:value="${CurrentUserAppId}"/>
-        <button type="submit" class="btn btn-success">Оставить комментарий</button>
+        <button type="submit" class="btn btn-success" th:text="#{singleArticlePage.form.button.submit}">
+            singlePage.form.button.submit
+        </button>
     </form>
 </div>
 <div th:replace="fragments/footer :: footer"/>

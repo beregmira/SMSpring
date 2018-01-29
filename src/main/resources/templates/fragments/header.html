@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="../../static/css/jumbotron-narrow.css" th:href="@{/css/jumbotron-narrow.css}"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </div>
-    <title th:fragment="header-title">МегаБлогоКомпани</title>
+    <title th:text="#{company.title}" th:fragment="header-title">company.title</title>
 </head>
 <body>
 
@@ -31,42 +31,43 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a th:href="@{/main}">Бложик</a></li>
-                <li><a th:href="@{/editor}">Добавить статью</a></li>
+                <li><a th:text="#{nav.main}" th:href="@{/main}">nav.main</a></li>
+                <li><a th:text="#{nav.editor}" th:href="@{/editor}">nav.editor</a></li>
             </ul>
             <ul th:if="${#authentication.getPrincipal()}==anonymousUser" class="nav navbar-nav navbar-right">
                 <li class="active">
-                    <a th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span>Войти</a>
+                    <a th:text="#{nav.login}" th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span>nav.login</a>
                 </li>
                 <li>
-                    <a th:href="@{/sign}"><span class="glyphicon glyphicon-user"></span>Регистрация</a>
+                    <a th:text="#{nav.sign}" th:href="@{/sign}"><span
+                            class="glyphicon glyphicon-user"></span>nav.sign</a>
                 </li>
             </ul>
             <div th:if="${#authentication.getPrincipal()}!=anonymousUser">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="javascript: document.logoutForm.submit()"><span
-                                class="glyphicon glyphicon-log-in"></span>Выйти</a>
+                        <a th:text="#{nav.signout}" href="javascript: document.logoutForm.submit()"><span
+                                class="glyphicon glyphicon-log-in"></span>nav.signout</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
     <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-        <input type="submit" value="Выйти"/>
+        <input type="submit" th:value="#{nav.signout}"/>
     </form>
 </nav>
 
 <div class="container text-center" th:fragment="header">
     <div class="jumbotron">
-        <h1>МегаБлогоКомпани</h1>
+        <h1 th:text="#{company.title}">company.title</h1>
         <div th:if="${#authentication.getPrincipal()}==anonymousUser">
-            <p class="lead">Добро пожаловать!</p>
-            <p>Авторизуйтесь, воспользовавшись меню, или зарегистрируйтесь.</p>
+            <p class="lead" th:text="#{header.welcomeToAnonymous}">header.welcomeToAnonymous</p>
+            <p th:text="#{header.welcomeToAnonymousMessage}"></p>
         </div>
         <div th:if="${#authentication.getPrincipal()}!=anonymousUser">
-            <p class="lead" th:text="'Добро пожаловать, ' + ${#authentication.getName()}"></p>
-            <p>Вы можете писать новые статьи и оставлять комментарии.</p>
+            <p class="lead" th:text="#{header.welcomeToUsers} + ${#authentication.getName()}"></p>
+            <p th:text="#{header.welcomeToUsersMessage}">header.welcomeToUsersMessage</p>
         </div>
     </div>
 </div>

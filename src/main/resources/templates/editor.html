@@ -12,26 +12,28 @@
         <div class="row content">
             <div class="text-left">
                 <form action="#" th:action="@{/editor/submit}" th:object="${article}" method="post">
-                    <h1>Создание статьи</h1>
+                    <h1 th:text="#{editorPage.form.h1}">editorPage.form.h1</h1>
                     <div class="form-group">
-                        <label for="usr">Название:</label>
-                        <input type="text" class="form-control" id="usr" th:field="*{title}"/>
-                        <label for="tags">Тэги:</label>
+                        <label for="title" th:text="#{editorPage.form.label.title}">editorPage.form.label.title</label>
+                        <input type="text" class="form-control" id="title" th:field="*{title}"/>
+                        <label for="tags" th:text="#{editorPage.form.label.tags}">editorPage.form.label.tags</label>
                         <input type="text" class="form-control" id="tags" th:field="*{tags}"/>
                     </div>
                     <div class="form-group">
-                        <label for="comment">Текст:</label>
-                        <textarea class="form-control" rows="20" id="comment" th:field="*{content}"></textarea>
+                        <label for="content"
+                               th:text="#{editorPage.form.label.content}">editorPage.form.label.content</label>
+                        <textarea class="form-control" rows="20" id="content" th:field="*{content}"></textarea>
                     </div>
                     <input type="hidden" class="form-control" id="userApp" name="userid"
                            th:value="${CurrentUserAppId}"/>
-                    <button type="submit" class="btn btn-success">Сохранить</button>
+                    <button type="submit" class="btn btn-success" th:text="#{editorPage.form.button.submit}">
+                        editorPage.form.button.submit
+                    </button>
                 </form>
                 <hr/>
             </div>
         </div>
     </div>
-
 </div>
 <div th:replace="fragments/footer :: footer"/>
 </body>
